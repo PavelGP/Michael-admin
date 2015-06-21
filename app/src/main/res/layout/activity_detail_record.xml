@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="by.of.servicebook.myapplication.activities.DetailRecordActivity">
+    tools:context="by.of.servicebook.michael.activities.DetailRecordActivity">
 
     <include
         android:id="@+id/toolbar"

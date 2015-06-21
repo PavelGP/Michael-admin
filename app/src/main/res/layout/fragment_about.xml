@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="by.of.servicebook.myapplication.fragments.AboutFragment"
+    tools:context="by.of.servicebook.michael.fragments.AboutFragment"
     android:background="@color/white">
     <LinearLayout
         android:orientation="horizontal"

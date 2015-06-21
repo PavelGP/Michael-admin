@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="by.of.servicebook.myapplication" >
+    package="by.of.servicebook.michael" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MyApp"
+        android:name="by.of.servicebook.michael.MyApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -20,21 +20,21 @@
             android:value="1" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name="by.of.servicebook.michael.activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activities.CarDetailsActivity"
+            android:name="by.of.servicebook.michael.activities.CarDetailsActivity"
             android:label="@string/title_activity_car_details" >
         </activity>
         <activity
-            android:name=".activities.DetailRecordActivity"
+            android:name="by.of.servicebook.michael.activities.DetailRecordActivity"
             android:label="@string/title_activity_detail_record" >
         </activity>
         <activity
-            android:name=".activities.SplashActivity"
-            android:label="@string/app_name" >
+            android:name="by.of.servicebook.michael.activities.SplashActivity"
+            android:label="Michael-admin" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="by.of.servicebook.michael.activities.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
     </application>
