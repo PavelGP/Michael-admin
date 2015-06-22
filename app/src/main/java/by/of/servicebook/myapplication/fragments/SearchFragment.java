@@ -24,19 +24,19 @@ import by.of.servicebook.myapplication.utils.AppConst;
 /**
  * Created by Pavel on 21.04.2015.
  */
-public class GarageFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
     private Activity activity;
     CarsAdapter adapter;
     SharedPreferences sharedPreferences;
 
-    public static GarageFragment newInstance() {
-        GarageFragment fragment = new GarageFragment();
+    public static SearchFragment newInstance() {
+        SearchFragment fragment = new SearchFragment();
 
         return fragment;
     }
 
-    public GarageFragment() {
+    public SearchFragment() {
         // Required empty public constructor
     }
 
@@ -65,7 +65,7 @@ public class GarageFragment extends Fragment {
 
         List<Car> cars = DataProvider.getInstance().getAllCars();
 
-        adapter = new CarsAdapter(getActivity(), R.layout.item_car, cars, sharedPreferences);
+        adapter = new CarsAdapter(getActivity(), R.layout.item_car, cars);
 
         lvCars.setAdapter(adapter);
         lvCars.setOnItemClickListener(onItemClickListener);

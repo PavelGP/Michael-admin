@@ -18,62 +18,32 @@ import by.of.servicebook.myapplication.utils.AppConst;
 /**
  * Created by Pavel on 21.04.2015.
  */
-public class CarsAdapter extends ArrayAdapter<Car> {
+public class CarsAdapter extends BaseListAdapter<Car> {
     LayoutInflater inflater;
-    final SharedPreferences preferences;
 
-    public CarsAdapter(Context context, int resource, List<Car> objects, SharedPreferences preferences) {
-        super(context, resource, objects);
-        this.inflater = LayoutInflater.from(context);
-        this.preferences = preferences;
+    public CarsAdapter(Context context, int layoutId, List<Car> results) {
+        super(context, layoutId, results);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder viewHolder;
-        if (convertView == null){
-            convertView = inflater.inflate(R.layout.item_car, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
+    protected ViewHolder<Car> createViewHolder(final View v) {
+        return new ViewHolder<Car>() {
+            TextView tvPosition = (TextView) v.findViewById(R.id.tvPosition);
+            TextView tvMake = (TextView) v.findViewById(R.id.tvMake);
+            TextView tvModel = (TextView) v.findViewById(R.id.tvModel);
+            TextView tvYear = (TextView) v.findViewById(R.id.tvYear);
+            TextView tvRegNumber = (TextView) v.findViewById(R.id.tvRegNumber);
+            TextView tvVinCode = (TextView) v.findViewById(R.id.tvVinCode);
 
-        final Car item = getItem(position);
-        int carId = preferences.getInt(AppConst.VEHICLE, -1);
-        if (carId == item.key){
-            viewHolder.chb.setChecked(true);
-        } else {
-            viewHolder.chb.setChecked(false);
-        }
-        viewHolder.tvMake.setText(item.make);
-        viewHolder.tvModel.setText(item.model);
-        viewHolder.tvYear.setText("" + item.year);
-        viewHolder.tvRegNumber.setText(item.regNumber);
-
-        viewHolder.chb.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt(AppConst.VEHICLE, item.key);
-                editor.apply();
-                CarsAdapter.this.notifyDataSetChanged();
+            protected void hold(Car item) {
+                tvPosition.setText(getPosition(item) + 1);
+                tvMake.setText(item.make);
+                tvModel.setText(item.model);
+                tvYear.setText("" + item.year);
+                tvRegNumber.setText(item.regNumber);
+                tvVinCode.setText(item.vinCode);
             }
-        });
-
-        return convertView;
-    }
-
-    class ViewHolder {
-        CheckBox chb;
-        TextView tvMake, tvModel, tvYear, tvRegNumber;
-
-        ViewHolder (View view){
-            this.chb = (CheckBox) view.findViewById(R.id.chb);
-            this.tvMake = (TextView) view.findViewById(R.id.tvMake);
-            this.tvModel = (TextView) view.findViewById(R.id.tvModel);
-            this.tvYear = (TextView) view.findViewById(R.id.tvYear);
-            this.tvRegNumber = (TextView) view.findViewById(R.id.tvRegNumber);
-        }
+        };
     }
 }

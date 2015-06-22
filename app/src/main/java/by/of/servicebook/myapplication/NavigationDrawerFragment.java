@@ -105,7 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
         String[] textTitle = new String[] {
-                getString(R.string.fragment_title_garage),
+                getString(R.string.fragment_title_search),
                 getString(R.string.fragment_title_records),
                 getString(R.string.fragment_title_statistic),
                 getString(R.string.fragment_title_settings)

@@ -16,7 +16,7 @@ import android.support.v7.widget.Toolbar;
 
 import by.of.servicebook.myapplication.NavigationDrawerFragment;
 import by.of.servicebook.myapplication.R;
-import by.of.servicebook.myapplication.fragments.GarageFragment;
+import by.of.servicebook.myapplication.fragments.SearchFragment;
 import by.of.servicebook.myapplication.fragments.RecordsFragment;
 import by.of.servicebook.myapplication.fragments.SettingsFragment;
 import by.of.servicebook.myapplication.fragments.StatisticFragment;
@@ -86,7 +86,7 @@ public class MainActivity extends ActionBarActivity
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, GarageFragment.newInstance())
+                        .replace(R.id.container, SearchFragment.newInstance())
                         .commit();
                 break;
             case 1:
@@ -112,7 +112,7 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.fragment_title_garage);
+                mTitle = getString(R.string.fragment_title_search);
                 break;
             case 2:
                 mTitle = getString(R.string.fragment_title_records);
