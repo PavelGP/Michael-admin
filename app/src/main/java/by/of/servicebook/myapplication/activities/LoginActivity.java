@@ -58,7 +58,6 @@ public class LoginActivity extends ActionBarActivity {
                         Toast.makeText(LoginActivity.this, getString(R.string.no_internet),
                                 Toast.LENGTH_SHORT).show();
                     }
-
                 }
             });
         }

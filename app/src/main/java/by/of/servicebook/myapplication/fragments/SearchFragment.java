@@ -1,34 +1,38 @@
 package by.of.servicebook.myapplication.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import by.of.servicebook.myapplication.R;
-import by.of.servicebook.myapplication.activities.CarDetailsActivity;
 import by.of.servicebook.myapplication.activities.MainActivity;
-import by.of.servicebook.myapplication.adapters.CarsAdapter;
-import by.of.servicebook.myapplication.db.models.Car;
-import by.of.servicebook.myapplication.db.DataProvider;
+import by.of.servicebook.myapplication.fragments.base.BaseFragment;
 import by.of.servicebook.myapplication.utils.AppConst;
+import by.of.servicebook.myapplication.utils.AppUtils;
 
 /**
  * Created by Pavel on 21.04.2015.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends BaseFragment {
 
     private Activity activity;
-    CarsAdapter adapter;
-    SharedPreferences sharedPreferences;
+    private ViewHolder viewHolder;
 
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
@@ -44,43 +48,51 @@ public class SearchFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = activity;
-        ((MainActivity) activity).onSectionAttached(AppConst.FRAGMENT_GARAGE);
+        ((MainActivity) activity).onSectionAttached(AppConst.FRAGMENT_SEARCH);
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_newgarage, container, false);
+        View v = inflater.inflate(R.layout.fragment_search, container, false);
 
-        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        int car = sharedPreferences.getInt(AppConst.VEHICLE, -1);
-        if (car==-1){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(AppConst.VEHICLE, 1);
-            editor.apply();
-        }
-
-        ListView lvCars = (ListView) v.findViewById(R.id.lvCars);
-
-        List<Car> cars = DataProvider.getInstance().getAllCars();
-
-        adapter = new CarsAdapter(getActivity(), R.layout.item_car, cars);
-
-        lvCars.setAdapter(adapter);
-        lvCars.setOnItemClickListener(onItemClickListener);
+        viewHolder = new ViewHolder(v);
 
         return v;
     }
 
-    ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            int carId = adapter.getItem(position).key;
+    class ViewHolder{
+        @InjectView(R.id.etEmailSearch)
+        EditText etEmail;
+        @InjectView(R.id.btnStartEmailSearch)
+        Button btnEmailSearch;
 
-            CarDetailsActivity.launch(getActivity(), carId);
+        public ViewHolder(View v){
+            ButterKnife.inject(this, v);
         }
-    };
 
+        @OnClick(R.id.btnStartEmailSearch)
+        public void startEmailSearch(Button btn){
+            String email = etEmail.getText().toString();
+            if (!AppUtils.isValidEmail(email)){
+                Toast.makeText(getActivity(), getString(R.string.check_email),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
 
+            ParseQuery<ParseUser> query = ParseQuery.getQuery(ParseUser.class);
+            query.whereContains("username", email);
+            query.findInBackground(new FindCallback<ParseUser>() {
+                @Override
+                public void done(List<ParseUser> list, ParseException e) {
+                    if (e == null){
+                        Log.d("TAG", "success! find " + list.size() + " results");
+                    } else {
+                        Log.d("TAG", "request failed!");
+                    }
+                }
+            });
+        }
+    }
 }

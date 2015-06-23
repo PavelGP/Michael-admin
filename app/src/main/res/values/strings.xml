@@ -14,6 +14,12 @@
     <string name="your_cars">Ваши автомобили</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- activity_base.xml -->
+    <string name="in_process">Идёт обработка#8230</string>
+
+    <!-- fragment_base_list.xml -->
+    <string name="empty">Пусто</string>
+
     <!-- activity_splash.xml -->
     <string name="service_book">Электронная сервисная книга</string>
 
@@ -57,6 +63,9 @@
     <string name="logout">Сменить учетную запись</string>
     <string name="terms_of_use">Условия использования</string>
     <string name="write_us">Написать нам</string>
+
+    <!-- fragment_search.xml -->
+    <string name="check_email">Проверьте введённый email</string>
 
 
     <string name="km">км</string>

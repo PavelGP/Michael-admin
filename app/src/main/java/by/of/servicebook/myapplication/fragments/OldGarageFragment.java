@@ -103,7 +103,7 @@ public class OldGarageFragment extends Fragment implements View.OnClickListener 
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = activity;
-        ((MainActivity) activity).onSectionAttached(AppConst.FRAGMENT_GARAGE);
+        ((MainActivity) activity).onSectionAttached(AppConst.FRAGMENT_SEARCH);
 
     }
 
