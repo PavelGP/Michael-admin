@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-import com.byochannel.byo.R;
+import by.of.servicebook.myapplication.R;
+
 
 /**
  * Created by p.gulevich on 21.05.2015.
@@ -60,7 +61,7 @@ public class ChangeTrackNameDialog extends NoticeDialogFragment {
                         if (mListener != null) mListener.onDialogPositiveClick(ChangeTrackNameDialog.this);
                     }
                 })
-                .setNegativeButton(R.string.cancel_btn, new DialogInterface.OnClickListener() {
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (mListener != null) mListener.onDialogNegativeClick(ChangeTrackNameDialog.this);
                     }

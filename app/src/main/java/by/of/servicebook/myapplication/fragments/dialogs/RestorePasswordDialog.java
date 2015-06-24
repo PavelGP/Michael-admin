@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 
-import com.byochannel.byo.Constants;
 
 /**
  * Created by s.ankuda on 5/8/2015.
  */
-public class RestorePasswordDialog extends NoticeDialogFragment implements Constants {
+public class RestorePasswordDialog extends NoticeDialogFragment {
 
     public static DialogFragment newInstance(String messageTitle, String messageContent,
                                              NoticeDialogFragment.NoticeDialogListener noticeDialogListener) {

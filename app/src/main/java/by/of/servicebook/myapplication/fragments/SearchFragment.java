@@ -2,7 +2,6 @@ package by.of.servicebook.myapplication.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import by.of.servicebook.myapplication.R;
+import by.of.servicebook.myapplication.activities.BaseActivity;
 import by.of.servicebook.myapplication.activities.MainActivity;
 import by.of.servicebook.myapplication.fragments.base.BaseFragment;
 import by.of.servicebook.myapplication.utils.AppConst;
-import by.of.servicebook.myapplication.utils.AppUtils;
 
 /**
  * Created by Pavel on 21.04.2015.
@@ -75,24 +68,18 @@ public class SearchFragment extends BaseFragment {
         @OnClick(R.id.btnStartEmailSearch)
         public void startEmailSearch(Button btn){
             String email = etEmail.getText().toString();
-            if (!AppUtils.isValidEmail(email)){
+
+            if (email.isEmpty()){
                 Toast.makeText(getActivity(), getString(R.string.check_email),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            ParseQuery<ParseUser> query = ParseQuery.getQuery(ParseUser.class);
-            query.whereContains("username", email);
-            query.findInBackground(new FindCallback<ParseUser>() {
-                @Override
-                public void done(List<ParseUser> list, ParseException e) {
-                    if (e == null){
-                        Log.d("TAG", "success! find " + list.size() + " results");
-                    } else {
-                        Log.d("TAG", "request failed!");
-                    }
-                }
-            });
+            //start ListFragment with results
+            Bundle args = new Bundle();
+            args.putString(UserListFragment.USER_EMAIL_REQ_KEY, email);
+            activityCommunicator.startActivityWithFragment(UserListFragment.class.getName(), args, BaseActivity.class);
+
         }
     }
 }

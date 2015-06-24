@@ -6,7 +6,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import com.byochannel.byo.R;
+import by.of.servicebook.myapplication.R;
+
 
 /**
  * Created by s.ankuda on 5/4/2015.
@@ -49,7 +50,7 @@ public class NoticeDialogFragment extends BaseDialogFragment {
                         if (mListener != null) mListener.onDialogPositiveClick(NoticeDialogFragment.this);
                     }
                 })
-                .setNegativeButton(R.string.cancel_btn, new DialogInterface.OnClickListener() {
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (mListener != null) mListener.onDialogNegativeClick(NoticeDialogFragment.this);
                     }

@@ -10,11 +10,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by p.gulevich on 22.06.2015.
  */
 public abstract class BaseListAdapter<T> extends ArrayAdapter<T> {
     public static abstract class ViewHolder<T> {
+
         protected abstract void hold(T item);
     }
 

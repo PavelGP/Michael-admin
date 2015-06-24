@@ -16,6 +16,7 @@ import by.of.servicebook.myapplication.R;
 import by.of.servicebook.myapplication.db.models.Car;
 import by.of.servicebook.myapplication.db.models.Statistic;
 import by.of.servicebook.myapplication.db.DataProvider;
+import by.of.servicebook.myapplication.fragments.base.BaseFragment;
 import by.of.servicebook.myapplication.utils.AppConst;
 
 /**
@@ -23,7 +24,7 @@ import by.of.servicebook.myapplication.utils.AppConst;
  * Use the {@link StatisticFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StatisticFragment extends Fragment {
+public class StatisticFragment extends BaseFragment {
     DataProvider provider = DataProvider.getInstance();
 
     public static StatisticFragment newInstance() {

@@ -22,13 +22,14 @@ import by.of.servicebook.myapplication.adapters.RecordsAdapter;
 import by.of.servicebook.myapplication.db.models.Car;
 import by.of.servicebook.myapplication.db.models.Record;
 import by.of.servicebook.myapplication.db.DataProvider;
+import by.of.servicebook.myapplication.fragments.base.BaseFragment;
 import by.of.servicebook.myapplication.utils.AppConst;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 @SuppressWarnings("ALL")
-public class RecordsFragment extends Fragment {
+public class RecordsFragment extends BaseFragment {
     Activity activity;
     DataProvider provider = DataProvider.getInstance();
     RecordsAdapter adapter;

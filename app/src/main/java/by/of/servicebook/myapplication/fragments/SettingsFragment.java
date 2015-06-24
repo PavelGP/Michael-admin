@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 
 import by.of.servicebook.myapplication.activities.MainActivity;
 import by.of.servicebook.myapplication.R;
+import by.of.servicebook.myapplication.fragments.base.BaseFragment;
 import by.of.servicebook.myapplication.utils.AppConst;
 
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends BaseFragment {
     private Activity activity;
 
     public static SettingsFragment newInstance() {
